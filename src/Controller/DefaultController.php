@@ -8,9 +8,19 @@ use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
+    /**
+     * @Route("/")
+     */
+    public function index()
+    {
+        return $this->render('default/index.html.twig', []);
+    }
+
+
     /**
      * List the rewards of the specified user.
      *
