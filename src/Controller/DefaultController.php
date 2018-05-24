@@ -9,13 +9,14 @@ use Swagger\Annotations as SWG;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends AbstractController
+class DefaultController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function index()
+    public function indexAction()
     {
         return $this->render('default/index.html.twig', []);
     }
@@ -40,7 +41,7 @@ class DefaultController extends AbstractController
      * @SWG\Tag(name="rewards")
      * @Security(name="Bearer")
      */
-    public function indexAction()
+    public function dataAction()
     {
     return new JsonResponse([
         [

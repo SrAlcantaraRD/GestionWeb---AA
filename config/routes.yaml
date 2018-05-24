@@ -1,6 +1,6 @@
-index:
-    path: /
-    controller: App\Controller\DefaultController::index
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
 
 # Bloqueda porque es más bonita sin el json
 # Si se quiere utilizar, descomentar en ./routes/nelmio_api_doc.yaml
