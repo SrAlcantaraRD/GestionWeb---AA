@@ -1,0 +1,61 @@
+Crear AppWeb con
+	- Symfony
+	- ReactJS
+	- BeHat
+	- ApiDoc
+
+
+Pasos 
+0. Abrir comando de lineas
+1. Crear proyecto symfony
+	1. composer create-project symfony/website-skeleton my-project
+	2. cd my-project
+	3. composer require symfony/web-server-bundle --dev
+	4. composer require sensiolabs/security-checker --dev
+	5. git add .
+	6. git commit -m "Initial commit"
+
+2. Instalar API DOC
+	1. composer require nelmio/api-doc-bundle
+	2. Descomentar lineas del fichero config/routes/nelmio_api_doc.yaml
+		app.swagger_ui:
+    		path: /api/doc
+    		methods: GET
+    		defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+	3. # Añadir al fichero config/routing.yaml
+			app.swagger_ui:
+    		path: /api/doc
+    		methods: GET
+    		defaults: { _controller: nelmio_api_doc.controller.swagger_ui } 
+- Para generar el formulario de login, ir a config/packages/security , hay un link con información
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+            
+Arrancar servidor
+	php bin/console server:run
+	php bin/console cache:clear
+
+Arrancar webPack & Permanecer observando
+	yarn run encore dev
+	yarn run encore dev --watch
+	yarn run encore production
+
+Correr BeHat
+	php behat
+Configurar BBDD
+	1.  config/packages/doctrine.yaml
+
+Test con phpUnit
+	-  Write test cases in the tests/ folder
+   - Run php bin/phpunit
+
+Ver enlaces enrutados
+	php bin/console debug:router
+
+Crear un controllador de forma segura
+	php bin/console make:controller
