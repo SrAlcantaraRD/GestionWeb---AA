@@ -35,6 +35,8 @@ Pasos
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
 
+4. Crear la base de datos (Configuración en el fichero .env)
+	php bin/console doctrine:database:create
             
 Arrancar servidor
 	php bin/console server:run
