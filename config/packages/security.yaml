@@ -28,6 +28,7 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 csrf_parameter: _csrf_security_token
                 csrf_token_id: a_private_string
+                provider: our_db_provider
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 

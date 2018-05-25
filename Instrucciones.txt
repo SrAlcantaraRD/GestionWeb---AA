@@ -37,7 +37,10 @@ Pasos
 
 4. Crear la base de datos (Configuración en el fichero .env)
 	-Hace falta activar la extención pdo_mysql del php.ini
-	php bin/console doctrine:database:create
+	- php bin/console doctrine:database:create 		#Crea la base de datos declarada
+	- php bin/console doctrine:migrations:diff 		#Guarda un archivo con las diferencias entre la BBDD vs ENTIDADDES
+	- php bin/console doctrine:migrations:migrate 	#Aplica en la BBDD las entidades
+	- https://symfony.com/doc/current/components/validator.html #Para hacer validaciones en las entidades
             
 Arrancar servidor
 	php bin/console server:run
@@ -62,3 +65,5 @@ Ver enlaces enrutados
 
 Crear un controllador de forma segura
 	php bin/console make:controller
+
+Para validar en
