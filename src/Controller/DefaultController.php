@@ -21,6 +21,13 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', []);
     }
 
+    /**
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
 
     /**
      * List the rewards of the specified user.
