@@ -36,6 +36,7 @@ Pasos
             # https://symfony.com/doc/current/security/form_login_setup.html
 
 4. Crear la base de datos (Configuración en el fichero .env)
+	-Hace falta activar la extención pdo_mysql del php.ini
 	php bin/console doctrine:database:create
             
 Arrancar servidor
