@@ -26,9 +26,9 @@ security:
                 login_path: login
                 check_path: login
                 default_target_path: /Ey
-                csrf_token_generator: security.csrf.token_manager
-                csrf_parameter: _csrf_security_token
-                csrf_token_id: a_private_string
+                #csrf_token_generator: security.csrf.token_manager
+                #csrf_parameter: _csrf_security_token
+                #csrf_token_id: a_private_string
         secured_area:
             form_login:
                 provider: our_db_provider
