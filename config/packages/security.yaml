@@ -14,21 +14,32 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            #anonymous: true
+            pattern: ^/
             anonymous: ~
-            pattern:    ^/
             http_basic: ~
             provider: our_db_provider
-            # activate different ways to authenticate
-
-        secured_area:
+            logout:
+                path:   /logout
+                target: login
             form_login:
+                provider: our_db_provider
                 login_path: login
                 check_path: login
+                default_target_path: /Ey
                 csrf_token_generator: security.csrf.token_manager
                 csrf_parameter: _csrf_security_token
                 csrf_token_id: a_private_string
+        secured_area:
+            form_login:
                 provider: our_db_provider
+                login_path: login
+                check_path: login
+                default_target_path: /Ey
+                #csrf_token_generator: security.csrf.token_manager
+                #csrf_parameter: _csrf_security_token
+                #csrf_token_id: a_private_string
+
+
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import ItemCard from './Components/ItemCard';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Delete from '@material-ui/icons/Delete';
 
 class App extends React.Component {
   constructor() {
@@ -23,6 +26,11 @@ class App extends React.Component {
       });
   }
 
+  handleOpen() {
+    <Route path='/about' component={About} />
+    alert("Al");
+  }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -41,6 +49,11 @@ class App extends React.Component {
             )
           )}
         </div>
+
+      <Button variant="raised" color="secondary" onClick={this.handleOpen} path="logout">
+        Logout
+        <Delete />
+      </Button>
       </MuiThemeProvider>
     );
   }
