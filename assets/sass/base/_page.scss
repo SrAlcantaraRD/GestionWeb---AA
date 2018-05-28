@@ -1,0 +1,106 @@
+// BODY
+//------------------
+body {
+  background: $page-color;
+  font-family: 'Roboto', sans-serif;
+  color: $text-color;
+  font-size: 15px;
+  margin: 0;
+  // position: relative;
+}
+footer {
+  padding: 8px 0;
+  color: $text-faded-color;
+  width: 100%;
+  background: $box-background-color;
+  overflow: visible;
+  text-align: center;
+  position: relative;
+  div, span {
+    padding: 5px;
+  }
+}
+// .has_main_menu footer {
+footer {
+  // padding-left: 72px;
+  &.main_menu {
+    padding-left: 72px;
+  }
+  @media($narrow-max) {
+    // padding-left: 72px;
+  }
+}
+
+// PAGE
+//------------------
+.main-container {
+  min-height: 100%;
+  margin-bottom: -72px;
+  padding-bottom: 72px;
+}
+.main-container:after {
+  content: "";
+  display: block;
+}
+.page {
+  padding: 20px 0 20px 20px;
+  @media($medium) {
+    padding: 26px;
+    padding-top: 20px;
+  }
+}
+.has_main_menu .page {
+  padding-left: 20px + 72px;
+  @media($medium) {
+    padding-left: 26px + 80px;
+  }
+}
+
+.page_heading {
+  padding-right: 140px;
+}
+.footnote {
+  color: $text-faded-color;
+  padding: 5px;
+}
+.has-view-modes {
+  position: relative;
+  position: relative;
+  min-height: 69px;
+}
+#view_mode {
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  margin-top: 10px;
+  @media($medium) {
+    width: 280px;
+    margin-top: 0;
+    position: absolute;
+    text-align: right;
+  }
+}
+
+// LOADERS
+//------------------
+.loader {
+  @extend .noselect;
+  text-align: center;
+  padding: 40px;
+  &.small {
+    padding: 0;
+    img {
+      width:  30px;
+      height: 30px;
+    }
+  }
+}
+
+.selectLoader {
+vertical-align: middle;
+display: inline-block;
+  img {
+      width:  30px;
+      height: 30px;
+    }
+}

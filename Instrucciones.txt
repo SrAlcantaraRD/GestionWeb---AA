@@ -46,6 +46,10 @@ Arrancar servidor
 	php bin/console server:run
 	php bin/console cache:clear
 
+Ver paginas de errores
+	http://127.0.0.1:8000/index.php/_error/{statusCode}
+	http://127.0.0.1:8000/index.php/_error/{statusCode}.{format}
+
 Arrancar webPack & Permanecer observando
 	yarn run encore dev
 	yarn run encore dev --watch

@@ -6,6 +6,12 @@ import ItemCard from './Components/ItemCard';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Delete from '@material-ui/icons/Delete';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import Container from './Containers/Header';
+import Menu from './Containers/Menu';
+import Body from './Containers/Body';
+import Footer from './Containers/Footer';
 
 class App extends React.Component {
   constructor() {
@@ -26,34 +32,38 @@ class App extends React.Component {
       });
   }
 
-  handleOpen() {
-    <Route path='/about' component={About} />
-    alert("Al");
+  logOut(){
+    
   }
-
+  
   render() {
     return (
       <MuiThemeProvider>
-        <div style={{ display: 'flex' }}>
-          {this.state.entries.map(
-            ({ id, author, avatarUrl, title, description }) => (
-              <ItemCard
-                key={id}
-                author={author}
-                title={title}
-                avatarUrl={avatarUrl}
-                style={{ flex: 1, margin: 10 }}
-              >
-                {description}
-              </ItemCard>
-            )
-          )}
-        </div>
+        <div id="admin-container" className="has_top_menu has_main_menu has_footer">
+          <div className="page" style={{ display: 'flex' }}>
+            {this.state.entries.map(
+              ({ id, author, avatarUrl, title, description }) => (
+                <ItemCard
+                  key={id}
+                  author={author}
+                  title={title}
+                  avatarUrl={avatarUrl}
+                  style={{ flex: 1, margin: 10 }}
+                >
+                  {description}
+                </ItemCard>
+              )
+            )}
+          </div>
 
-      <Button variant="raised" color="secondary" onClick={this.handleOpen} path="logout">
-        Logout
-        <Delete />
-      </Button>
+
+        <Button variant="raised" color="secondary" path="logout" onClick={this.logOut()}>
+          <Router path={'/logout'} exact={true} >
+            <Link to={ '/logout' }><span>Logout</span></Link> 
+          </Router>
+          <Delete />
+        </Button>
+        </div>
       </MuiThemeProvider>
     );
   }

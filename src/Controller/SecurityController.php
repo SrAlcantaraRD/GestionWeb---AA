@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SecurityController extends Controller
 {
 	/**
-	* @Route("/login", name="login")
+	* @Route("/", name="login")
 	*/
 	public function login(Request $request, AuthenticationUtils $authenticationUtils)
 	{
@@ -24,5 +24,14 @@ class SecurityController extends Controller
 			'last_username' => $lastUsername,
 			'error'         => $error,
 		));
+	}
+
+
+	/**
+	* @Route("/GestionWeb")
+	*/
+	public function indexAction()
+	{
+		return $this->render('default/index.html.twig', []);
 	}
 }

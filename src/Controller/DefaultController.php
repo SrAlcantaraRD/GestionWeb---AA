@@ -13,13 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/Ey")
-     */
-    public function indexAction()
-    {
-        return $this->render('default/index.html.twig', []);
-    }
 
     /**
      * @Route("/admin")

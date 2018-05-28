@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
 
 # Bloqueda porque es más bonita sin el json
 # Si se quiere utilizar, descomentar en ./routes/nelmio_api_doc.yaml
@@ -13,5 +13,6 @@ app.swagger_ui:
     path: /api/doc
     methods: GET
     defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
 logout:
     path: /logout

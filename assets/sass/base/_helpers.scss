@@ -1,0 +1,140 @@
+//===============
+// Helper classes
+//===============
+.block {
+  margin-bottom: 23px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.small-block {
+  @extend .block;
+  margin-bottom: 15px;
+}
+
+.small-block-top {
+  @extend .block;
+  margin-top: 15px;
+}
+
+.button-margin {
+  margin: 5px;
+}
+.button-margin-right {
+  margin-right: 10px;
+}
+.button-margin-left {
+  margin-left: 10px;
+}
+
+.cover-div {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.file-input-disabled {
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}
+
+.fileInput-hidden { 
+  display: none;
+}
+
+.disabled-input {
+  background-color: white;
+}
+
+squish {
+  &:active {
+    transform: scale(.95)
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+[data-noselect] {
+  @extend .noselect;
+}
+
+.float-right {
+  float: right;
+  margin-left: 23px;
+}
+.float-left {
+  float: left;
+  margin-right: 15px;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.centered {
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.interactive {
+  cursor: pointer;
+}
+
+.relative { position: relative }
+
+.no-margins { margin: 0 !important }
+
+.accent { color: $accent-color !important }
+
+.list-inline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    margin-right: 13px;
+    vertical-align: top;
+    @media($medium) {
+      margin-right: 23px;
+    }
+  }
+  li:last-child {
+    margin-right: 0;
+  }
+  &.tight li {
+    margin-right: 13px
+  }
+}
+.list-stack {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.not-allowed{
+  cursor: not-allowed;
+  opacity: .4;
+  pointer-events:none;
+  &:hover { border-color: $border-color }
+}
+
+.no-scrollable{
+  overflow-y: hidden;
+}
+
+.hidden{
+  display: none !important;
+}

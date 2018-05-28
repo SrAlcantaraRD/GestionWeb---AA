@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+//===============
+// Elements
+//===============
+html, body {
+  height: 100%;
+}
+a {
+  color: $accent-color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline
+  }
+}
+
+// Section
+//------------------
+section {
+  @extend .block;
+  &>h2 {
+    margin-bottom: 13px;
+  }
+}
+
+label {
+  color: $text-faded-color;
+}
+
+strong {
+  color: $text-color;
+}
