@@ -1,72 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react'
+import Header from './Header'
+import Main from './Main'
 
-import ItemCard from './Components/ItemCard';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Delete from '@material-ui/icons/Delete';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+)
 
-import Container from './Containers/Header';
-import Menu from './Containers/Menu';
-import Body from './Containers/Body';
-import Footer from './Containers/Footer';
-
-class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      entries: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('/api/data')
-      .then(response => response.json())
-      .then(entries => {
-        this.setState({
-          entries
-        });
-      });
-  }
-
-  logOut(){
-    
-  }
-  
-  render() {
-    return (
-      <MuiThemeProvider>
-        <div id="admin-container" className="has_top_menu has_main_menu has_footer">
-          <div className="page" style={{ display: 'flex' }}>
-            {this.state.entries.map(
-              ({ id, author, avatarUrl, title, description }) => (
-                <ItemCard
-                  key={id}
-                  author={author}
-                  title={title}
-                  avatarUrl={avatarUrl}
-                  style={{ flex: 1, margin: 10 }}
-                >
-                  {description}
-                </ItemCard>
-              )
-            )}
-          </div>
-
-
-        <Button variant="raised" color="secondary" path="logout" onClick={this.logOut()}>
-          <Router path={'/logout'} exact={true} >
-            <Link to={ '/logout' }><span>Logout</span></Link> 
-          </Router>
-          <Delete />
-        </Button>
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App

@@ -24,7 +24,7 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // will create public/build/app.js and public/build/app.css
-    .addEntry('app', ['./assets/js/app.js','./assets/sass/main.scss'])
+    .addEntry('app', ['./assets/js/index.js','./assets/sass/main.scss'])
     .addEntry('materialize', './assets/js/materialize.min.js')
 
     // allow sass/scss files to be processed
