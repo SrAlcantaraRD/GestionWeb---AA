@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Shipment
  *
- * @ORM\Table(name="shipment", indexes={@ORM\Index(name="fk_shipment_service1_idx", columns={"id_service"}), @ORM\Index(name="fk_shipment_transport_agency1_idx", columns={"id_transport_agency"}), @ORM\Index(name="fk_shipment_employee1_idx", columns={"id_employee"})})
- * @ORM\Entity
+ * @ORM\Table(name="shipment", indexes={@ORM\Index(name="fk_shipment_service_idx", columns={"id_service"}), @ORM\Index(name="fk_shipment_transport_agency_idx", columns={"id_transport_agency"}), @ORM\Index(name="fk_shipment_employee_idx", columns={"id_employee"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ShipmentRepository")
  */
 class Shipment
 {

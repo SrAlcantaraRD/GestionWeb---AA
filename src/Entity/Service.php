@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Service
  *
- * @ORM\Table(name="service", indexes={@ORM\Index(name="fk_service_invoice_order1_idx", columns={"id_invoice_order"})})
- * @ORM\Entity
+ * @ORM\Table(name="service", indexes={@ORM\Index(name="fk_service_invoice_order_idx", columns={"id_invoice_order"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */
 class Service
 {

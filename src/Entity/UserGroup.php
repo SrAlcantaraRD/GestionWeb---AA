@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UserGroup
  *
  * @ORM\Table(name="user_group")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserGroupRepository")
  */
 class UserGroup
 {
@@ -41,6 +41,10 @@ class UserGroup
      * @ORM\Column(name="main_table", type="string", length=45, nullable=true)
      */
     private $mainTable;
+
+    public function __construct() {
+        $this->id = 1;
+    }
 
     public function getId(): ?int
     {

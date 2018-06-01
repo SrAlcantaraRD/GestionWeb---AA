@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UserGroupPermission
  *
  * @ORM\Table(name="user_group_permission", indexes={@ORM\Index(name="fk_user_group_permission_user_group1_idx", columns={"user_group_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserGroupPermissionRepository")
  */
 class UserGroupPermission
 {

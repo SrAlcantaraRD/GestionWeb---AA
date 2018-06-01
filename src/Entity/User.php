@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\UserGroup;
 
 /**
  * User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"})}, indexes={@ORM\Index(name="fk_user_user_group1_idx", columns={"id_user_group"})})
- * @ORM\Entity
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="uk_user_email", columns={"email"}), @ORM\UniqueConstraint(name="uk_user_username", columns={"username"})}, indexes={@ORM\Index(name="fk_user_user_group_idx", columns={"id_user_group"})})
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -94,12 +97,22 @@ class User
     /**
      * @var \UserGroup
      *
-     * @ORM\ManyToOne(targetEntity="UserGroup")
+     * @ORM\ManyToOne(targetEntity="UserGroup"))
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user_group", referencedColumnName="id")
      * })
      */
     private $idUserGroup;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    public function __construct() {
+        $this->roles = array('ROLE_USER');
+    }
 
     public function getId(): ?int
     {
@@ -238,5 +251,24 @@ class User
         return $this;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
 
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function getSalt()
+    {
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
 }

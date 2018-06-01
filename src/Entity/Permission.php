@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ServiceState
+ * Permission
  *
- * @ORM\Table(name="service_state")
- * @ORM\Entity(repositoryClass="App\Repository\ServiceStateRepository")
+ * @ORM\Table(name="permission")
+ * @ORM\Entity(repositoryClass="App\Repository\PermissionRepository")
  */
-class ServiceState
+class Permission
 {
     /**
      * @var int
@@ -22,41 +22,29 @@ class ServiceState
     private $id;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="order", type="integer", nullable=true, options={"unsigned"=true})
-     */
-    private $order;
-
-    /**
      * @var string|null
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description", type="string", length=45, nullable=true)
+     * @ORM\Column(name="page", type="string", length=45, nullable=true)
+     */
+    private $page;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description", type="string", length=200, nullable=true)
      */
     private $description;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function setOrder(?int $order): self
-    {
-        $this->order = $order;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -67,6 +55,18 @@ class ServiceState
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPage(): ?string
+    {
+        return $this->page;
+    }
+
+    public function setPage(?string $page): self
+    {
+        $this->page = $page;
 
         return $this;
     }
