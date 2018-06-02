@@ -2,18 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import ItemCard from './Components/ItemCard';
+import ItemCard from './components/ItemCard';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Delete from '@material-ui/icons/Delete';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Container from './Containers/Header';
-import Menu from './Containers/Menu';
-import Body from './Containers/Body';
-import Footer from './Containers/Footer';
-
-class App extends React.Component {
+class App2 extends React.Component {
   constructor() {
     super();
 
@@ -69,4 +64,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App2

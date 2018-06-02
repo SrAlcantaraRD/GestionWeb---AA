@@ -10,7 +10,7 @@ export default class MenuItem extends React.Component {
     const id = this.props.id;
     const className = this.props.estat + (this.props.active ? " active" : "");
     return (
-      <li class={ className } onClick={ () => this.handleChange(link.substring(1))}>
+      <li className={ className } onClick={ () => this.handleChange(link.substring(1))}>
         <Link to={ link } id={ id }><span>{ this.props.title }</span></Link>
       </li>
 

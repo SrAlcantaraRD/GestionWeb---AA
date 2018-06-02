@@ -1,9 +1,22 @@
+Otros links
+	- https://redux.js.org/basics/usage-with-react
+	- http://librosweb.es/libro/symfony_2_4/capitulo_8/relaciones_y_asociaciones_de_entidades.html
+	- https://material-ui.com/demos/app-bar/
+	- https://www.tomasvotruba.cz/blog/2017/10/16/how-to-use-repository-with-doctrine-as-service-in-symfony/
+	- https://www.doctrine-project.org/projects/doctrine-orm/en/latest/tutorials/pagination.html#pagination
+	- https://github.com/markerikson/react-redux-links --> links de interes
+	- https://zapier.com/engineering/how-to-build-redux/
+	- https://github.com/adazzle/react-data-grid
+
 Crear AppWeb con
 	- Symfony
 	- ReactJS
 	- BeHat
 	- ApiDoc
 
+Antes de tocar, leer:
+	- https://reactjs.org/docs/thinking-in-react.html
+	- https://redux.js.org
 
 Pasos 
 0. Abrir comando de lineas
@@ -70,4 +83,7 @@ Ver enlaces enrutados
 Crear un controllador de forma segura
 	php bin/console make:controller
 
-Para validar en
+ERRORES
+	-	Yarn encore not found?
+		yarn add --dev @symfony/webpack-encore
+		yarn install
