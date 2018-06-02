@@ -2,6 +2,10 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
 
+controllers:
+    resource: '../src/Controller/'
+    type:     annotation
+
 # Bloqueda porque es más bonita sin el json
 # Si se quiere utilizar, descomentar en ./routes/nelmio_api_doc.yaml
 # app.swagger:

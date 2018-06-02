@@ -30,7 +30,7 @@ class SecurityController extends Controller
 	/**
 	* @Route("/GestionWeb")
 	*/
-	public function indexAction()
+	public function index()
 	{
 		return $this->render('default/index.html.twig', []);
 	}

@@ -7,6 +7,8 @@ Otros links
 	- https://github.com/markerikson/react-redux-links --> links de interes
 	- https://zapier.com/engineering/how-to-build-redux/
 	- https://github.com/adazzle/react-data-grid
+	- https://symfony.com/doc/current/components/serializer.html#ignoring-attributes
+		END-POINT --> Ignorar propiedades de las clases al serialziar el retorno de una llamada a BBDD
 
 Crear AppWeb con
 	- Symfony
