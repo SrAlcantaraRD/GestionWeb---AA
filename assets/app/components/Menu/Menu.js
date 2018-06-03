@@ -63,14 +63,14 @@ promise.then(bool => console.log('Bool is true'))
             <SendIcon />
           </ListItemIcon>
           <ListItemText classes={{ primary: classes.primary }} inset primary="Sent mail" />
-          <Link to='/'>Home</Link>
+          <Link to='/asldoja/asdloja'>Home</Link>
         </MenuItem>
         <MenuItem className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText classes={{ primary: classes.primary }} inset primary="Drafts" />
-          <Link to='/Gestion'>Gestion</Link>
+          <Link to='/Gestion/asda/awww'>Gestion</Link>
         </MenuItem>
         <MenuItem className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>

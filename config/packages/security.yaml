@@ -20,12 +20,12 @@ security:
             provider: our_db_provider
             logout:
                 path:   /logout
-                target: login
+                target: /
             form_login:
                 provider: our_db_provider
                 login_path: login
                 check_path: login
-                default_target_path: /GestionWeb
+                default_target_path: /
                 #csrf_token_generator: security.csrf.token_manager
                 #csrf_parameter: _csrf_security_token
                 #csrf_token_id: a_private_string
@@ -34,7 +34,7 @@ security:
                 provider: our_db_provider
                 login_path: login
                 check_path: login
-                default_target_path: /GestionWeb
+                default_target_path: /
                 #csrf_token_generator: security.csrf.token_manager
                 #csrf_parameter: _csrf_security_token
                 #csrf_token_id: a_private_string
