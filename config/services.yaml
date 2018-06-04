@@ -20,15 +20,23 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
+
+    # Have the logic to manage DDBB
+    App\Repository\:
+        resource: ../src/Repository
+
+    # Content the routes and a firewall by user's permissions
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    # Content action-logic
+    App\Form\Handler\:
+        resource: ../src/Form/Handler
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-    App\Repository\:
-        resource: ../src/Repository
+    # Used to handler form submits
+    App\Form\Type\:
+        resource: ../src/Form/Type
 
     # se supone que esto es para activar el servicio.
     # cómo diablos se utiliza desde el controllador?

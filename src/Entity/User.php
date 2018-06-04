@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Entity\UserGroup;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
@@ -44,6 +44,12 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="string", length=64, nullable=false)
      */
     private $password;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @var array
@@ -97,22 +103,12 @@ class User implements UserInterface
     /**
      * @var \UserGroup
      *
-     * @ORM\ManyToOne(targetEntity="UserGroup"))
+     * @ORM\ManyToOne(targetEntity="UserGroup")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user_group", referencedColumnName="id")
      * })
      */
     private $idUserGroup;
-
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    public function __construct() {
-        $this->roles = array('ROLE_USER');
-    }
 
     public function getId(): ?int
     {
@@ -153,6 +149,16 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     public function getRoles(): ?array
@@ -251,16 +257,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
-    }
-
     public function getSalt()
     {
         // The bcrypt and argon2i algorithms don't require a separate salt.
@@ -271,4 +267,5 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+
 }

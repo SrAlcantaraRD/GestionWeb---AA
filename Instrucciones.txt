@@ -7,6 +7,8 @@ Otros links
 	- https://github.com/markerikson/react-redux-links --> links de interes
 	- https://zapier.com/engineering/how-to-build-redux/
 	- https://github.com/adazzle/react-data-grid
+	- http://symfony.com/doc/current/controller/error_pages.html
+		- Personalizar paginas de error
 	- https://symfony.com/doc/current/components/serializer.html#ignoring-attributes
 		END-POINT --> Ignorar propiedades de las clases al serialziar el retorno de una llamada a BBDD
 
@@ -44,11 +46,13 @@ Pasos
     		methods: GET
     		defaults: { _controller: nelmio_api_doc.controller.swagger_ui } 
 - Para generar el formulario de login, ir a config/packages/security , hay un link con información
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+	   # http_basic: true
+	   # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+	   # form_login: true
+	   # https://symfony.com/doc/current/security/form_login_setup.html
+	   #Entidad clave
+	   # https://symfony.com/doc/current/doctrine/registration_form.html
 
 4. Crear la base de datos (Configuración en el fichero .env)
 	-Hace falta activar la extención pdo_mysql del php.ini

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UserGroupPermission
  *
- * @ORM\Table(name="user_group_permission", indexes={@ORM\Index(name="fk_user_group_permission_user_group1_idx", columns={"user_group_id"})})
+ * @ORM\Table(name="user_group_permission", indexes={@ORM\Index(name="fk_user_group_permission_permission_idx", columns={"id_permission"}), @ORM\Index(name="fk_user_group_permission_user_group_idx", columns={"id_user_group"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserGroupPermissionRepository")
  */
 class UserGroupPermission
@@ -22,85 +22,50 @@ class UserGroupPermission
     private $id;
 
     /**
-     * @var string|null
+     * @var \Permission
      *
-     * @ORM\Column(name="name", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Permission")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_permission", referencedColumnName="id")
+     * })
      */
-    private $name;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="description", type="string", length=200, nullable=true)
-     */
-    private $description;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="user_group_permissioncol", type="string", length=45, nullable=true)
-     */
-    private $userGroupPermissioncol;
+    private $idPermission;
 
     /**
      * @var \UserGroup
      *
      * @ORM\ManyToOne(targetEntity="UserGroup")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_group_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_user_group", referencedColumnName="id")
      * })
      */
-    private $userGroup;
+    private $idUserGroup;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getIdPermission(): ?Permission
     {
-        return $this->name;
+        return $this->idPermission;
     }
 
-    public function setName(?string $name): self
+    public function setIdPermission(?Permission $idPermission): self
     {
-        $this->name = $name;
+        $this->idPermission = $idPermission;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getIdUserGroup(): ?UserGroup
     {
-        return $this->description;
+        return $this->idUserGroup;
     }
 
-    public function setDescription(?string $description): self
+    public function setIdUserGroup(?UserGroup $idUserGroup): self
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getUserGroupPermissioncol(): ?string
-    {
-        return $this->userGroupPermissioncol;
-    }
-
-    public function setUserGroupPermissioncol(?string $userGroupPermissioncol): self
-    {
-        $this->userGroupPermissioncol = $userGroupPermissioncol;
-
-        return $this;
-    }
-
-    public function getUserGroup(): ?UserGroup
-    {
-        return $this->userGroup;
-    }
-
-    public function setUserGroup(?UserGroup $userGroup): self
-    {
-        $this->userGroup = $userGroup;
+        $this->idUserGroup = $idUserGroup;
 
         return $this;
     }
