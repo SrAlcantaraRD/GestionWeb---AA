@@ -13,3 +13,7 @@ Feature: Product basket
     Given I am "antono - 29" user cuyo lema es "Tu ya sabes"
     Then Username must be "antono"
     And Age must be 29
+
+  Scenario:
+    Given I am on "/"
+    Then I should see a form

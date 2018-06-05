@@ -1,16 +1,20 @@
 <?php
 
+require_once './vendor/fzaninotto/Faker/src/autoload.php';
+
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit\Framework\Assert as PHPUnit_Framework_Assert; 
+use Faker\Factory as Faker;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context
 {
+
     private $user;
     private $shelf;
     private $basket;
@@ -147,5 +151,21 @@ class FeatureContext implements Context
             $this->shelf->setProductPrice($product);
             $this->basket->addProduct($product);
         }
+    }
+
+    /**
+     * @Given I am on :arg1
+     */
+    public function iAmOn($arg1)
+    {
+    }
+
+    /**
+     * @Then I should see a form
+     */
+    public function iShouldSeeAForm()
+    {
+        $faker = Faker::create();
+        print_r($faker->name);
     }
 }
