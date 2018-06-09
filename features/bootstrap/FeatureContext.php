@@ -1,171 +1,53 @@
 <?php
 
-require_once './vendor/fzaninotto/Faker/src/autoload.php';
-
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use PHPUnit\Framework\Assert as PHPUnit_Framework_Assert; 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Faker\Factory as Faker;
 
 /**
- * Defines application features from the specific context.
+ * This context class contains the definitions of the steps used by the demo 
+ * feature file. Learn how to get started with Behat and BDD on Behat's website.
+ * 
+ * @see http://behat.org/en/latest/quick_start.html
  */
 class FeatureContext implements Context
 {
-
-    private $user;
-    private $shelf;
-    private $basket;
+    /**
+     * @var KernelInterface
+     */
+    private $kernel;
 
     /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
+     * @var Response|null
      */
-    public function __construct()
+    private $response;
+
+    public function __construct(KernelInterface $kernel)
     {
-        $this->shelf = new Shelf();
-        $this->basket = new Basket($this->shelf);
+        $this->kernel = $kernel;
     }
 
     /**
-     * @Transform table:name,price
+     * @When a demo scenario sends a request to :path
      */
-    public function castProductsTable(TableNode $productTable)
+    public function aDemoScenarioSendsARequestTo(string $path)
     {
-        $products = array();
+        $this->response = $this->kernel->handle(Request::create($path, 'GET'));
+    }
 
-        foreach ($productTable->getHash() as $productHash) {
-            $product = new Product($productHash['name'], floatval($productHash['price']));
-            $products[] = $product;
+    /**
+     * @Then the response should be received
+     */
+    public function theResponseShouldBeReceived()
+    {
+		$faker = Faker::create("es_ES");
+        echo $faker->name."<br>";
+        
+        // var_dump($this->response);
+        if ($this->response === null) {
+            throw new \RuntimeException('No response received');
         }
-        return $products;
-    }
-
-    /** 
-     * @Transform /"([^\ "]+)(?: - )(\d+)?" user cuyo lema es "(.*)"/ 
-    */
-    public function createUserFromUsername($username, $age = 20, $klk = "") {
-        return new User($username, (int) $age, $klk);
-    }
-
-    /**
-     * @Transform /"(.*)".*\ £(\d+)/
-     * @Transform /"(.*)"/
-     */
-    public function castNamePriceToProduct($product, $price = 0)
-    {
-        return new Product($product, $price);
-    }
-    /**
-    * @Given /I am (".*" user cuyo lema es ".*")/
-    */
-    public function iAmUser(User $user) {
-        $this->user = $user;
-    }
-
-    /**
-    * @Then /Username must be "([^"]+)"/
-    */
-    public function usernameMustBe($username) {
-        PHPUnit_Framework_Assert::assertEquals(
-            $username,
-            $this->user->getUsername()
-        );
-    }
-
-    /**
-    * @Then /Age must be (\d+)/
-    */
-    public function ageMustBe($age) {
-        PHPUnit_Framework_Assert::assertEquals(
-            $age,
-            $this->user->getAge()
-        );
-
-        PHPUnit_Framework_Assert::assertInternalType(
-            'int',
-            $this->user->getAge()
-        );
-    }
-
-    /**
-     * @Given /there is a (".*", which costs £\d+)/
-     */
-    public function thereIsAWhichCostsPs($product)
-    {
-        $this->shelf->setProductPrice($product);
-    }
-
-    /**
-     * @When /I add the (".*") to the basket$/
-     */
-    public function iAddTheToTheBasket($product)
-    {
-        $this->basket->addProduct($product);
-    }
-
-    /**
-     * @Then I should have :count product(s) in the basket
-     */
-    public function iShouldHaveProductInTheBasket($count)
-    {
-        PHPUnit_Framework_Assert::assertCount(
-            intval($count),
-            $this->basket->getProducts()
-        );
-    }
-
-    /**
-     * @Then the overall basket price should be £:price
-     */
-    public function theOverallBasketPriceShouldBePs($price)
-    {
-        PHPUnit_Framework_Assert::assertSame(
-            floatval($price),
-            $this->basket->getTotalPrice()
-        );
-    }
-
-    /**
-     * @When /I add the "(.*)" to the basket \d+ times/
-     */
-    public function iAddTheToTheBasketTimes( $product)
-    {
-        var_dump($product);
-        for ($i=0; $i < $introduced; $i++) { 
-            $this->basket->addProduct($product);
-        }
-    }
-
-    /**
-     * @Given the following products in the basket:
-     */
-    public function theFollowingProductsInTheBasket(array $products)
-    {
-        foreach ($products as $product) {
-            $this->shelf->setProductPrice($product);
-            $this->basket->addProduct($product);
-        }
-    }
-
-    /**
-     * @Given I am on :arg1
-     */
-    public function iAmOn($arg1)
-    {
-    }
-
-    /**
-     * @Then I should see a form
-     */
-    public function iShouldSeeAForm()
-    {
-        $faker = Faker::create();
-        print_r($faker->name);
     }
 }

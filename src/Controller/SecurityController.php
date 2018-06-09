@@ -6,8 +6,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;
-
-require_once '../vendor/fzaninotto/Faker/src/autoload.php';
 use Faker\Factory as Faker;
 
 class SecurityController extends DefaultController
@@ -24,4 +22,13 @@ class SecurityController extends DefaultController
 
 		return new Response();
 	}
+
+    /**
+     * @Route("/api/books/{something}", methods={"GET"})
+     */
+	public function books($something)
+	{
+		var_dump($something);
+		return new Response($something);
+	}	
 }

@@ -75,7 +75,7 @@ Arrancar webPack & Permanecer observando
 	yarn run encore production
 
 Correr BeHat
-	php behat
+	vendor/bin/behat
 Configurar BBDD
 	1.  config/packages/doctrine.yaml
 
