@@ -34,10 +34,6 @@ class UserFormType extends AbstractType
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('termsAccepted'       , CheckboxType::class, array(
-                'mapped' => false,
-                'constraints' => new IsTrue(),
-            ))
         ;
     }
 

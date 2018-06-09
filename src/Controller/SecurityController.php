@@ -22,13 +22,4 @@ class SecurityController extends DefaultController
 
 		return new Response();
 	}
-
-    /**
-     * @Route("/api/books/{something}", methods={"GET"})
-     */
-	public function books($something)
-	{
-		var_dump($something);
-		return new Response($something);
-	}	
 }
