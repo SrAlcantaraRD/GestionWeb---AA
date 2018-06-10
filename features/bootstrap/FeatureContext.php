@@ -1,13 +1,13 @@
 <?php
 
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\TranslatableContext;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Behat\MinkExtension\Context\MinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
 use Faker\Factory as Faker;
 use App\Entity\User;
 use App\Entity\UserGroup;
@@ -19,17 +19,19 @@ use App\Repository\UserGroupRepository;
  * 
  * @see http://behat.org/en/latest/quick_start.html
  */
-class FeatureContext implements Context, SnippetAcceptingContext
+class FeatureContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-    public $faker;
+    public $language = "es_ES";
     public $user;
     public $doctrineManager;
+    public $minkContext;
+
     /**
      * Implement faker instance.
      */
     public function constructFakerFactory($language)
     {
-        $this->faker = Faker::create($language);
+        //$this->faker = Faker::create($language);
     }
 
 
@@ -38,7 +40,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function getTheDoctrineManager()
     {
-        $this->doctrineManager = $this->kernel->getContainer('doctrine')->get('doctrine');
+        //$this->doctrineManager = $this->kernel->getContainer('doctrine')->get('doctrine');
     }
 
     /**
@@ -54,6 +56,8 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
+        $this->faker = Faker::create($this->language);
+        $this->doctrineManager = $this->kernel->getContainer('doctrine')->get('doctrine');
     }
 
     /**
@@ -101,11 +105,11 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iFillTheRegisterFormWithMyData()
     {
-        $this->kernel->getSession()->getPage()->fillField("user_form[username]", $this->user->getUsername());
-        //$this->getSession()->getPage()->fillField("user_form[email]", $this->user->getEmail());
-        //$this->getSession()->getPage()->fillField("user_form[plainPassword][first]", $this->user->getPassword());
-        //$this->getSession()->getPage()->fillField("user_form[plainPassword][second]", $this->user->getPassword());
-        //$this->getSession()->getPage()->fillField("user_form[IdUserGroup]", $this->user->getIdUserGroup()->getName());
+        $this->getSession()->getPage()->fillField("user_form[username]", $this->user->getUsername());
+        $this->getSession()->getPage()->fillField("user_form[email]", $this->user->getEmail());
+        $this->getSession()->getPage()->fillField("user_form[plainPassword][first]", $this->user->getPassword());
+        $this->getSession()->getPage()->fillField("user_form[plainPassword][second]", $this->user->getPassword());
+        $this->getSession()->getPage()->fillField("user_form[IdUserGroup]", $this->user->getIdUserGroup()->getId());
     }
 
     /**
@@ -116,5 +120,18 @@ class FeatureContext implements Context, SnippetAcceptingContext
         $userGroup = $this->doctrineManager->getRepository(UserGroup::class)->findOneByName($strGroupName);
 
         $this->user->setIdUserGroup($userGroup);
+    }
+
+    /**
+     * @Then I should see a element with name :elementName
+     */
+    public function iShouldSeeA($elementName)
+    {
+       // $this->assertSession()->elementTextContains('css', $element, $this->fixStepArgument($text));
+
+        $element = $this->getSession()->getPage()->find(
+            'named',
+            array('id_or_name', $elementName)
+        );
     }
 }

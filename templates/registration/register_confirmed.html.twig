@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+  <section id="PageNotFound" class="centered">
+    <h1 class="large thin accent">Registro Completado</h1>
+  	<span class="subtitle pendingActivation" name="pendingActivation">Pendiente de Activación</span>
+    <p>
+		Hemos enviado un mail al correo electronico {{email}} 
+	<p>
+	<p>
+		Consulta tú bandeja de entrada, allí encontrarás un link para activar la cuenta.
+	</p>
+    <p><a href="/" name="goToHomepage">Iniciar sección</a></p>
+  </section>
+{% endblock %}

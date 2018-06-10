@@ -15,11 +15,13 @@ class SecurityController extends DefaultController
      */
    public function tryFaker()
 	{
-		$faker = Faker::create("es_ES");
-		echo $faker->name."<br>";
-		echo $faker->address."<br>";
-		echo $faker->realText($maxNbChars = 500) ."<br>";
+		return $this->redirectToRoute('index');
 
-		return new Response();
+		// $faker = Faker::create("es_ES");
+		// echo $faker->name."<br>";
+		// echo $faker->address."<br>";
+		// echo $faker->realText($maxNbChars = 500) ."<br>";
+
+		// return new Response();
 	}
 }

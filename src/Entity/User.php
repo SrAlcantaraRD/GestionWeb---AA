@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="uk_user_email", columns={"email"}), @ORM\UniqueConstraint(name="uk_user_username", columns={"username"})}, indexes={@ORM\Index(name="fk_user_user_group_idx", columns={"id_user_group"})})
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface

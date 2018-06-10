@@ -42,11 +42,6 @@ class UserGroup
      */
     private $mainTable;
 
-    public function __construct($name) {
-        $this->name = $name;
-        $this->id = 1;
-    }
-
     public function getId(): ?int
     {
         return $this->id;

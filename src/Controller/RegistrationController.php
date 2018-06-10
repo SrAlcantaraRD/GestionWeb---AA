@@ -12,13 +12,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/register", name="user_registration")
+     * @Route("/Register", name="Register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) build the form
         $user = new User();
-        
         $entityManager = $this->getDoctrine()->getManager();
         $form = $this->createForm(UserFormType::class, $user, array( 'entity_manager' => $entityManager, ));
 
@@ -42,12 +41,37 @@ class RegistrationController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('/');
+            // return $this->render(
+            //     'registration/register_confirmed.html.twig',
+            //     array(
+            //         "email" => $user->getEmail()
+            //     )
+            // );
+            
+            return $this->redirectToRoute(
+                'RegistrationConfirmed',
+                array(
+                    "email" => base64_encode($user->getEmail())
+                )
+            );
         }
 
         return $this->render(
             'registration/register.html.twig',
             array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * @Route("/RegistrationConfirmed/{email}", name="RegistrationConfirmed")
+     */
+    public function registerConfirmed($email)
+    {
+        return $this->render(
+            'registration/register_confirmed.html.twig',
+            array(
+                "email" => base64_decode($email)
+            )
         );
     }
 }
