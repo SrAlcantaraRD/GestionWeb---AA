@@ -6,7 +6,7 @@
 	    {{ form_row(form.email) }}
 	    {{ form_row(form.plainPassword.first) }}
 	    {{ form_row(form.plainPassword.second) }}
-
-	    <button class="btn-large btn-flat" type="submit">Register!</button>
+		{{ form_row(form.IdUserGroup) }}
+	    <button class="btn-large btn-flat" type="submit" name="submitBtn">Registrame!</button>
 	{{ form_end(form) }}
 {% endblock %}

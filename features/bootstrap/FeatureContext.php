@@ -2,10 +2,16 @@
 
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
+use Behat\Behat\Context\SnippetAcceptingContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Behat\Behat\Context\TranslatableContext;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Behat\MinkExtension\Context\MinkContext;
 use Faker\Factory as Faker;
+use App\Entity\User;
+use App\Entity\UserGroup;
+use App\Repository\UserGroupRepository;
 
 /**
  * This context class contains the definitions of the steps used by the demo 
@@ -13,8 +19,28 @@ use Faker\Factory as Faker;
  * 
  * @see http://behat.org/en/latest/quick_start.html
  */
-class FeatureContext implements Context
+class FeatureContext implements Context, SnippetAcceptingContext
 {
+    public $faker;
+    public $user;
+    public $doctrineManager;
+    /**
+     * Implement faker instance.
+     */
+    public function constructFakerFactory($language)
+    {
+        $this->faker = Faker::create($language);
+    }
+
+
+    /**
+     * @Given get the doctrine manager
+     */
+    public function getTheDoctrineManager()
+    {
+        $this->doctrineManager = $this->kernel->getContainer('doctrine')->get('doctrine');
+    }
+
     /**
      * @var KernelInterface
      */
@@ -43,12 +69,52 @@ class FeatureContext implements Context
      */
     public function theResponseShouldBeReceived()
     {
-		$faker = Faker::create("es_ES");
-        echo $faker->name."<br>";
-        
         // var_dump($this->response);
         if ($this->response === null) {
             throw new \RuntimeException('No response received');
         }
+    }
+
+    /**
+     * @Given start faker factory with :language
+     */
+    public function startedFakerFactory($language)
+    {
+        $this->constructFakerFactory($language);
+    }
+
+    /**
+     * @Given I am a user with randown data
+     */
+    public function iAmAUserWithRandownData()
+    {
+        $this->user = new User();
+
+        $this->user->setUsername($this->faker->userName);
+        $this->user->setPassword($this->faker->password);
+        $this->user->setName($this->faker->name);
+        $this->user->setEmail($this->faker->email);
+    }
+
+    /**
+     * @When I fill the register form with my data
+     */
+    public function iFillTheRegisterFormWithMyData()
+    {
+        $this->kernel->getSession()->getPage()->fillField("user_form[username]", $this->user->getUsername());
+        //$this->getSession()->getPage()->fillField("user_form[email]", $this->user->getEmail());
+        //$this->getSession()->getPage()->fillField("user_form[plainPassword][first]", $this->user->getPassword());
+        //$this->getSession()->getPage()->fillField("user_form[plainPassword][second]", $this->user->getPassword());
+        //$this->getSession()->getPage()->fillField("user_form[IdUserGroup]", $this->user->getIdUserGroup()->getName());
+    }
+
+    /**
+     * @Given my user type is a :userGroupName
+     */
+    public function myUserTypeIsA($strGroupName)
+    {
+        $userGroup = $this->doctrineManager->getRepository(UserGroup::class)->findOneByName($strGroupName);
+
+        $this->user->setIdUserGroup($userGroup);
     }
 }

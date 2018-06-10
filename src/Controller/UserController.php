@@ -30,6 +30,6 @@ class UserController extends DefaultController
          		->getRepository(User::class)
          		->findAll();
 
-      return new Response($this->serializer->serialize($users, 'json'));
+      	return new Response($this->serializer->serialize($users, 'json'));
 	}
 }

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Form\Type\UserFormType;
 use App\Entity\User;
+use App\Entity\UserGroup;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,9 @@ class RegistrationController extends Controller
     {
         // 1) build the form
         $user = new User();
-        $form = $this->createForm(UserFormType::class, $user);
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(UserFormType::class, $user, array( 'entity_manager' => $entityManager, ));
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -26,6 +29,10 @@ class RegistrationController extends Controller
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+
+            $strGroupName = $user->getIdUserGroup()->getName();
+            $userGroup = $this->getDoctrine()->getRepository(UserGroup::class)->findOneByName($strGroupName);
+            $user->setIdUserGroup($userGroup);
 
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();

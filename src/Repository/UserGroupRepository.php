@@ -36,15 +36,13 @@ class UserGroupRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?UserGroup
+    public function findOneByName($strName): ?UserGroup
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('u.name = :name')
+            ->setParameter('name', $strName)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }
