@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) build the form
-        $user = new User();
+        $user = new User;
         $entityManager = $this->getDoctrine()->getManager();
         $form = $this->createForm(UserFormType::class, $user, array( 'entity_manager' => $entityManager, ));
 

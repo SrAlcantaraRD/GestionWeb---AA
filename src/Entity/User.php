@@ -112,6 +112,10 @@ class User implements UserInterface
      */
     private $idUserGroup;
 
+    public function __construct() {
+        $this->roles = array('ROLE_USER');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

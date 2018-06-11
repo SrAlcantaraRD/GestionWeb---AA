@@ -93,3 +93,8 @@ ERRORES
 	-	Yarn encore not found?
 		yarn add --dev @symfony/webpack-encore
 		yarn install
+		
+Limpiar tablas
+	SET FOREIGN_KEY_CHECKS = 0; 
+	TRUNCATE table TABLE_NAME; 
+	SET FOREIGN_KEY_CHECKS = 1;
