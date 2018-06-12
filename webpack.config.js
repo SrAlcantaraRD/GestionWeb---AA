@@ -24,7 +24,7 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // will create public/build/app.js and public/build/app.css
-    .addEntry('app', ['./assets/app/index.js','./assets/sass/main.scss'])
+    .addEntry('app', ['./assets/app/index.jsx','./assets/sass/main.scss'])
 
     // allow sass/scss files to be processed
     .enableSassLoader()

@@ -28,6 +28,8 @@
                 Cómo usar el translate
                 <label for="username">{{ 'login.username'|trans([], null) }}</label>
             #}
+            <input type="checkbox" id="remember_me" name="_remember_me" checked />
+            <label for="remember_me">Keep me logged in</label>
 
             <button class="btn-large btn-flat" type="submit">Acceder</button>
             <a class="btn-large btn-flat" href="/Register" style ="text-decoration: none" onclick="window.location.href='\register'">{{ 'Registrarse'|trans([], null) }}</a>

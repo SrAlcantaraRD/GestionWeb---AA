@@ -37,7 +37,10 @@ class DefaultController extends Controller
     /**
     * @Route("/", name="Homepage")
     * @Route("/login", name="login")
-    * @Route("/Gestion/asda/awww")
+    * @Route("/Dashboard")
+    * @Route("/User")
+    * @Route("/Services")
+    * @Route("/ControlPanel")
     */
     public function index(Request $request, AuthenticationUtils $authenticationUtils, $slug = null)
     {

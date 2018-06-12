@@ -29,6 +29,10 @@ security:
                 #csrf_token_generator: security.csrf.token_manager
                 #csrf_parameter: _csrf_security_token
                 #csrf_token_id: a_private_string
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
         secured_area:
             form_login:
                 provider: our_db_provider

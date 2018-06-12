@@ -40,6 +40,8 @@ class UserGroupController extends DefaultController
 	*/
 	public function getAllUserGroups()
 	{
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
 		$serializer = $this->getSerializer();
 
      	$userGroups = $this->getDoctrine()
@@ -79,6 +81,8 @@ class UserGroupController extends DefaultController
 	*/
 	public function getUserGroup($groupId = 0)
 	{
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
      	$userGroup = $this->getDoctrine()
          		->getRepository(UserGroup::class)
          		->find($groupId);
@@ -116,6 +120,8 @@ class UserGroupController extends DefaultController
 	*/
 	public function getUserGroupByName($strName)
 	{
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
      	$userGroup = $this->getDoctrine()
          		->getRepository(UserGroup::class)
          		->findOneByName($strName);

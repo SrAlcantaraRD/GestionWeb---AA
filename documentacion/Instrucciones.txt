@@ -98,3 +98,6 @@ Limpiar tablas
 	SET FOREIGN_KEY_CHECKS = 0; 
 	TRUNCATE table TABLE_NAME; 
 	SET FOREIGN_KEY_CHECKS = 1;
+
+Faker
+	https://github.com/fzaninotto/Faker#fakerproviderbase

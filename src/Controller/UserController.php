@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\Security;
@@ -22,10 +24,11 @@ class UserController extends DefaultController
 	*     description="Returns all users"
 	* )
 	* @SWG\Tag(name="Users")
-	* @Security(name="Bearer")
 	*/
 	public function getUsers()
 	{
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
      	$users = $this->getDoctrine()
          		->getRepository(User::class)
          		->findAll();
