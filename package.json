@@ -1,5 +1,5 @@
 {
-    "name": "AA_GestionWeb",
+    "name": "AAGestionWeb",
     "version": "1.0.0",
     "description": "Integrando ReactJS",
     "main": "index.js",
@@ -8,6 +8,8 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.20.1",
         "babel-preset-react": "^6.24.1",
+        "eslint": "^4.19.1",
+        "eslint-plugin-react": "^7.9.1",
         "node-sass": "^4.9.0",
         "prop-types": "^15.6.1",
         "react": "^16.4.0",

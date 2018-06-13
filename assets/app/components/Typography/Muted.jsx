@@ -1,20 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {withStyles} from '@material-ui/core';
 
-import typographyStyle from "../../jss/material-dashboard-react/typographyStyle.jsx";
+import typographyStyle from '../../jss/material-dashboard-react/typographyStyle.jsx';
 
-function Muted({ props }) {
-  const { classes, children } = props;
-  return (
-    <div className={classes.defaultFontStyle + " " + classes.mutedText}>
-      {children}
-    </div>
-  );
+class Muted extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        const {classes, children} = this.props;
+        return (
+            <div className={classes.defaultFontStyle + ' ' + classes.mutedText}>
+                {children}
+            </div>
+        );
+    }
 }
 
 Muted.propTypes = {
-  classes: PropTypes.object.isRequired
+    children: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(typographyStyle)(Muted);

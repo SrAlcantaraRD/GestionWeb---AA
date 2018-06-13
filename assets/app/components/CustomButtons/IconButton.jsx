@@ -1,47 +1,43 @@
-import React from "react";
-import { withStyles, IconButton } from "@material-ui/core";
-import PropTypes from "prop-types";
+import React from 'react';
+import {withStyles, IconButton} from '@material-ui/core';
+import PropTypes from 'prop-types';
 
-import iconButtonStyle from "../../jss/material-dashboard-react/iconButtonStyle";
+import iconButtonStyle from '../../jss/material-dashboard-react/iconButtonStyle';
 
 class IconCustomButton extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-    };
-  }
-  render(){
-    const { classes, color, children, customClass, rest } = this.props;
-    return (
-      <IconButton
-        {...rest}
-        className={
-          classes.button +
-          (color ? " " + classes[color] : "") +
-          (customClass ? " " + customClass : "")
-        }
-      >
-        {children}
-      </IconButton>
-    );
-  }
+        this.state = {};
+    }
+    render() {
+        const {classes, color, children, customClass, rest} = this.props;
+        return (
+            <IconButton
+                {...rest}
+                className={classes.button + (color ? ' ' + classes[color] : '') + (customClass ? ' ' + customClass : '')}>
+                {children}
+            </IconButton>
+        );
+    }
 }
 
 IconCustomButton.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "info",
-    "success",
-    "warning",
-    "danger",
-    "rose",
-    "white",
-    "simple"
-  ]),
-  customClass: PropTypes.string,
-  disabled: PropTypes.bool
+    classes: PropTypes.object.isRequired,
+    children: PropTypes.object.isRequired,
+    rest: PropTypes.object.isRequired,
+    color: PropTypes.oneOf([
+        'primary',
+        'info',
+        'success',
+        'warning',
+        'danger',
+        'rose',
+        'white',
+        'simple'
+    ]),
+    customClass: PropTypes.string,
+    disabled: PropTypes.bool
 };
 
 export default withStyles(iconButtonStyle)(IconCustomButton);

@@ -18,33 +18,33 @@ $danger-color: $contrast-color;
 //===============
 // Paths
 //===============
-$icon: "../img/icons/";
+$icon: '../img/icons/';
 //===============
 // Includes
 //===============
 // Abstractions
-@import "abstractions/breakpoints";
+@import 'abstractions/breakpoints';
 // Base
-@import "base/base";
-@import "base/helpers";
-@import "base/page";
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/page';
 
-@charset "UTF-8";
+//@charset 'UTF-8';
 
 // Color
-@import "components/color-variables";
-@import "components/color-classes";
+@import 'components/color-variables';
+@import 'components/color-classes';
 
 // Variables;
-@import "components/variables";
+@import 'components/variables';
 
 // Reset
-@import "components/normalize";
+@import 'components/normalize';
 
 // components
-@import "components/global";
-@import "components/preloader";
-@import "components/typography";
+@import 'components/global';
+@import 'components/preloader';
+@import 'components/typography';
 
 // Import font
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i');
